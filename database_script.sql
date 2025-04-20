@@ -131,7 +131,7 @@ CREATE TABLE PurchasePaddy(
     FOID INT,
     WID INT,
     purchase_paddy_type VARCHAR(200),
-    purchase_paddy_quanity DOUBLE,
+    purchase_paddy_quantity DOUBLE,
     price_per_KG DOUBLE,
     purchase_date DATE,
     note TEXT NULL,
@@ -156,9 +156,9 @@ CREATE TABLE Stock(
 	ID INT AUTO_INCREMENT PRIMARY KEY,
     WID INT,
     HID INT,
-    total_stock DOUBLE,
+    available_stock_KG DOUBLE,
+    damage_stock_KG DOUBLE,
     updated_at TIMESTAMP,
-    damage_stock DOUBLE,
     FOREIGN KEY (WID) REFERENCES Warehouse (WID) ON DELETE CASCADE,
     FOREIGN KEY (HID) REFERENCES Harvest (HID) ON DELETE CASCADE
     );
