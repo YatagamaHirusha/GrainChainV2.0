@@ -42,7 +42,7 @@ CREATE TABLE WarehouseOfficer(
 CREATE TABLE DeputyOfficer(
 	DOID INT PRIMARY KEY,
     FOREIGN KEY (DOID) REFERENCES User (UID),
-	appointmentDate DATE,
+	appointment_date DATE,
     assign_district VARCHAR (100) NOT NULL
     );
 
