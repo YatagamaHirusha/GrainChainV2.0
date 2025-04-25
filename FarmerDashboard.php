@@ -8,12 +8,17 @@ $farmer_id = $_SESSION['FID'] ?? 1;
 
 // fetch farmer details 
 $name = " ";
+<<<<<<< HEAD
 $sql = "SELECT U.full_name FROM User U JOIN Farmer F ON F.FID = U.UID WHERE F.FID = $farmer_id";
+=======
+$sql = "SELECT U.full_name FROM User U JOIN Farmer F ON F.$farmer_id = U.$farmer_id";
+>>>>>>> 154409cbce24d0dd69e3d836f751272816112065
 $result = $con->query($sql);
 if($result && $row = $result->fetch_assoc()){
   $name = $row['full_name'];
 }
 
+<<<<<<< HEAD
 // fetch seasonal details
 $seasonInfo = "No active season data.";
 $sql = "SELECT season_name, year, paddy_type, land_size_in_acres, paddy_status 
@@ -37,6 +42,8 @@ if ($result) {
     }
 }
 
+=======
+>>>>>>> 154409cbce24d0dd69e3d836f751272816112065
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +98,7 @@ if ($result) {
   <div class="welcome-box mb-4">
     <h4>Welcome, <?= $name ?> 👋</h4>
     <p>This is your personalized dashboard. Here you can manage your paddy details, subsidy, and sale requests.</p>
+<<<<<<< HEAD
     <p><strong>Active Season:</strong> <?= htmlspecialchars($seasonInfo) ?></p>
   </div>
 
@@ -112,12 +120,22 @@ if ($result) {
   <!-- Action Cards -->
   <div class="row g-4">
 
+=======
+  </div>
+
+  <!-- Action Cards -->
+  <div class="row g-4">
+>>>>>>> 154409cbce24d0dd69e3d836f751272816112065
     <div class="col-md-4">
       <div class="card shadow-sm">
         <div class="card-body">
           <h5 class="card-title">🌾 Add Paddy Details</h5>
           <p class="card-text">Enter your seasonal paddy details here.</p>
+<<<<<<< HEAD
           <a href="add_seasonal_details.php" class="btn btn-success">Add Now</a>
+=======
+          <a href="add_paddy.php" class="btn btn-success">Add Now</a>
+>>>>>>> 154409cbce24d0dd69e3d836f751272816112065
         </div>
       </div>
     </div>
@@ -125,6 +143,7 @@ if ($result) {
     <div class="col-md-4">
       <div class="card shadow-sm">
         <div class="card-body">
+<<<<<<< HEAD
           <h5 class="card-title">🔄 Update Seasonal Details</h5>
           <p class="card-text">View and update your ongoing seasonal records.</p>
           <a href="view_seasonal_details.php" class="btn btn-warning">Update</a>
@@ -135,6 +154,8 @@ if ($result) {
     <div class="col-md-4">
       <div class="card shadow-sm">
         <div class="card-body">
+=======
+>>>>>>> 154409cbce24d0dd69e3d836f751272816112065
           <h5 class="card-title">🌱 Apply for Subsidy</h5>
           <p class="card-text">Request government fertilizer subsidy.</p>
           <a href="apply_subsidy.php" class="btn btn-success">Apply</a>
@@ -153,6 +174,18 @@ if ($result) {
     </div>
   </div>
 
+<<<<<<< HEAD
+=======
+  <!-- Notification Preview -->
+  <div class="mt-5">
+    <h5>🔔 Latest Notifications</h5>
+    <ul class="list-group">
+      <li class="list-group-item">✅ Subsidy Approved for Yala 2025</li>
+      <li class="list-group-item">📦 City Agent accepted your sell request</li>
+      <li class="list-group-item">📩 New message from City Agent</li>
+    </ul>
+  </div>
+>>>>>>> 154409cbce24d0dd69e3d836f751272816112065
 </div>
 
 <!-- Bootstrap JS -->
