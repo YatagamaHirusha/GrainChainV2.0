@@ -70,7 +70,7 @@ if ($result && $row = $result->fetch_assoc()) {
         <div class="card-body">
           <h5 class="card-title">👤 Verify Farmers</h5>
           <p class="card-text">Approve or reject new farmers in your division.</p>
-          <a href="verify_farmers.php" class="btn btn-primary">Go</a>
+          <a href="verify_land.php" class="btn btn-primary">Go</a>
         </div>
       </div>
     </div>
