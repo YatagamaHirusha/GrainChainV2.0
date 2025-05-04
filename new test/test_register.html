@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrainChain - User Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f2f7f2;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            margin-top: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2d572c;
+            font-weight: bold;
+        }
+        .role-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center mb-4">User Registration - GrainChain</h2>
+    <form>
+        <!-- Step 1: Personal Details -->
+        <div class="mb-4">
+            <h5>Personal Details</h5>
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>NIC:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Date of Birth:</label>
+                <input type="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <select class="form-control">
+                    <option value="">--Select--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Step 2: Contact Information -->
+        <div class="mb-4">
+            <h5>Contact Information</h5>
+            <div class="form-group">
+                <label>Contact Number:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Home Number (Optional):</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <textarea class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Upload NIC (JPG/PNG):</label>
+                <input type="file" class="form-control">
+            </div>
+        </div>
+
+        <!-- Step 3: Account Login Info -->
+        <div class="mb-4">
+            <h5>Account Login Info</h5>
+            <div class="form-group">
+                <label>Username:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password:</label>
+                <input type="password" class="form-control">
+            </div>
+        </div>
+
+        <!-- Step 4: Role Selection -->
+        <div class="mb-4">
+            <h5>Role Selection</h5>
+            <div class="form-group">
+                <label>Select Role:</label>
+                <select id="role" class="form-control" onchange="showRoleSection()">
+                    <option value="">-- Select Role --</option>
+                    <option value="Farmer">Farmer</option>
+                    <option value="Field Officer">Field Officer</option>
+                    <option value="Warehouse Officer">Warehouse Officer</option>
+                    <option value="Deputy Officer">Deputy Officer</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Farmer Section -->
+        <div id="Farmer-section" class="role-section">
+            <h5>Farmer Land Details</h5>
+            <div class="form-group">
+                <label>District:</label>
+                <select id="farmer-district" class="form-control" onchange="updateDivisions('farmer')">
+                    <option value="">-- Select District --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Division:</label>
+                <select id="farmer-division" class="form-control" onchange="updateAgriServiceAndSecretariat('farmer')">
+                    <option value="">-- Select Division --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Agricultural Service Area:</label>
+                <select id="farmer-agri-service" class="form-control">
+                    <option value="">-- Select Area --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Regional Secretariat Division:</label>
+                <select id="farmer-secretariat" class="form-control">
+                    <option value="">-- Select Secretariat --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Land Registration No:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Mahawali Region:</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Land Type:</label>
+                <select class="form-control">
+                    <option value="Owned">Owned</option>
+                    <option value="Rented">Rented</option>
+                    <option value="Government Lease">Government Lease</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Irrigation Type:</label>
+                <select class="form-control">
+                    <option value="Rain-fed">Rain-fed</option>
+                    <option value="Canal">Canal</option>
+                    <option value="Well">Well</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Land Size (in Acres):</label>
+                <input type="number" step="0.01" class="form-control">
+            </div>
+        </div>
+
+        <!-- Step 5: Confirmation -->
+        <div class="mb-4 mt-4">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="agreed">
+                <label for="agreed" class="form-check-label">I agree to the terms and conditions.</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Register</button>
+    </form>
+</div>
+
+<script>
+// Dummy Data for dropdowns
+const districts = {
+    Colombo: ["Colombo 01", "Colombo 02"],
+    Galle: ["Galle 01", "Galle 02"],
+    Kandy: ["Kandy 01", "Kandy 02"],
+    Matara: ["Matara 01", "Matara 02"],
+    Kurunegala: ["Kurunegala 01", "Kurunegala 02"]
+};
+
+function showRoleSection() {
+    document.querySelectorAll('.role-section').forEach(sec => sec.style.display = 'none');
+    const role = document.getElementById("role").value;
+    if (role && document.getElementById(role + "-section")) {
+        document.getElementById(role + "-section").style.display = 'block';
+    }
+}
+
+function updateDivisions(rolePrefix) {
+    const selectedDistrict = document.getElementById(rolePrefix+'-district').value;
+    const divisionSelect = document.getElementById(rolePrefix+'-division');
+    divisionSelect.innerHTML = '<option value="">-- Select Division --</option>';
+    if (districts[selectedDistrict]) {
+        districts[selectedDistrict].forEach(d => {
+            const opt = document.createElement("option");
+            opt.value = d;
+            opt.innerText = d;
+            divisionSelect.appendChild(opt);
+        });
+    }
+}
+
+function updateAgriServiceAndSecretariat(rolePrefix) {
+    const serviceAreaSelect = document.getElementById(rolePrefix+'-agri-service');
+    const secretariatSelect = document.getElementById(rolePrefix+'-secretariat');
+    serviceAreaSelect.innerHTML = '<option value="">-- Select Area --</option>';
+    secretariatSelect.innerHTML = '<option value="">-- Select Secretariat --</option>';
+    // Dummy values
+    const dummyServiceAreas = ["Service Area 1", "Service Area 2"];
+    const dummySecretariats = ["Secretariat 1", "Secretariat 2"];
+    dummyServiceAreas.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s;
+        opt.innerText = s;
+        serviceAreaSelect.appendChild(opt);
+    });
+    dummySecretariats.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s;
+        opt.innerText = s;
+        secretariatSelect.appendChild(opt);
+    });
+}
+
+window.onload = function() {
+    const districtDropdown = document.getElementById("farmer-district");
+    Object.keys(districts).forEach(d => {
+        const opt = document.createElement("option");
+        opt.value = d;
+        opt.innerText = d;
+        districtDropdown.appendChild(opt);
+    });
+};
+</script>
+</body>
+</html>
